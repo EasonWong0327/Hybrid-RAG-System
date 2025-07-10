@@ -1,0 +1,43 @@
+# Docker部署
+# =====================================
+
+# PyTorch CUDA版本
+--extra-index-url https://download.pytorch.org/whl/cu124
+torch==2.4.1+cu124
+torchvision==0.19.1+cu124
+torchaudio==2.4.1+cu124
+
+# 其他依赖
+transformers>=4.48.0
+tokenizers>=0.21.0,<0.22.0
+
+# RAG核心组件
+faiss-cpu>=1.7.4
+elasticsearch>=8.0.0
+
+# NLP基础工具
+jieba>=0.42.1
+numpy>=1.24.0
+scikit-learn>=1.3.0
+sentence-transformers>=2.2.2
+dataclasses-json>=0.5.9
+
+# API框架
+fastapi>=0.104.0
+uvicorn>=0.24.0
+pydantic>=2.4.0
+
+# 数据处理
+pandas>=2.0.0
+
+# HuggingFace Hub
+huggingface-hub>=0.25.0
+
+# 实用工具
+python-dotenv>=1.0.0
+requests>=2.31.0
+safetensors>=0.4.0
+
+# 优化和加速
+accelerate>=0.25.0
+bitsandbytes>=0.42.0 

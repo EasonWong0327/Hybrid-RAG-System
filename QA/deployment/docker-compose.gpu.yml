@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # 混合RAG系统服务
+  rag-system:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile.gpu
+    container_name: hybrid-rag-system
+    environment:
+      - ES_HOST=host.docker.internal
+      - ES_PORT=9200
+      - MODEL_PATH=/app/models
+      - DATA_PATH=/app/data
+    volumes:
+      - ../data:/app/data
+      - model_cache:/app/models
+    ports:
+      - "8000:8000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+
+volumes:
+  model_cache: 
